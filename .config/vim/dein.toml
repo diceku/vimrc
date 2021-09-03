@@ -1,0 +1,125 @@
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+  au MyAutoCmd VimEnter * nested colorscheme iceberg
+'''
+
+[[plugins]]
+repo = 'yasukotelin/shirotelin'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'rking/ag.vim'
+
+[[plugins]]
+repo = 'vim-scripts/grep.vim'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo='othree/yajs.vim'
+
+[[plugins]]
+repo = 'haya14busa/vim-easymotion'
+
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add='''
+if executable('golsp')
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-lang',
+        \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
+endif
+
+" Dart LSP
+if executable('dart')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'dart',
+        \ 'cmd': {server_info->['/Users/ueta-daisuke/development/flutter/bin/cache/dart-sdk/bin/dart', '/Users/ueta-daisuke/development/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp', '--enable-completion-model', '--completion-model /Users/ueta-daisuke/development/flutter/bin/cache/dart-sdk/model/lexeme/']},
+        \ 'initialization_options': {"onlyAnalyzeProjectsWithOpenFiles": "true"},
+        \ 'whitelist': ['dart'],
+        \ })
+endif
+
+" Ruby LSP
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
+
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+'''
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-neosnippet.vim'
+hook_add='''
+call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+    \ 'name': 'neosnippet',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+    \ }))
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+'''
+
+[[plugins]]
+repo = 'koturn/vim-mplayer'
+[[plugins]]
+repo = 'koturn/vim-podcast'
+
+
+[[plugins]]
+repo = 'dart-lang/dart-vim-plugin'
+[[plugins]]
+repo = 'thosakwe/vim-flutter'
